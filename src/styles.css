@@ -5,3 +5,22 @@
 @import 'flowbite/src/themes/default';
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
+
+@utility container {
+  margin-inline: auto;
+}
+@theme {
+  --color-primary: #7f77dd;
+  --color-primary-tint: #eeedfe;
+  --color-primary-dark: #534ab7;
+  --color-like: #e24b4a;
+  --color-success: #1d9e75;
+  --color-warning: #ba7517;
+  --ripple-nav-height: 56px;
+  --ripple-border: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+body {
+  background-color: var(--color-gray-50);
+  font-family: 'SN Pro', sans-serif;
+}

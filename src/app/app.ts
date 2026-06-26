@@ -9,7 +9,7 @@ import { initFlowbite } from 'flowbite';
   styleUrl: './app.css',
 })
 export class App implements OnInit {
-  protected readonly title = signal('social-media-app');
+  protected readonly title = signal('Ripple');
   ngOnInit(): void {
     initFlowbite();
   }
