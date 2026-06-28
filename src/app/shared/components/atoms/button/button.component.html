@@ -1,0 +1,23 @@
+<!-- to have one slot for the content projection -->
+<ng-template #content><ng-content /></ng-template>
+
+@if (tag == 'button') {
+  <button
+    class="p-1.5 rounded cursor-pointer transition-all duration-300 disabled:bg-gray-500 disabled:cursor-not-allowed"
+    [class]="styles"
+    (click)="handler()"
+    [type]="type"
+    [disabled]="disabled"
+  >
+    <ng-container *ngTemplateOutlet="content" />
+  </button>
+}
+
+@if (tag == 'link') {
+  <a
+    class="p-1.5 rounded cursor-pointer transition-all duration-300 disabled:bg-gray-500 disabled:cursor-not-allowed"
+    [class]="styles"
+    [routerLink]="path"
+    ><ng-container *ngTemplateOutlet="content"
+  /></a>
+}
