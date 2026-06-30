@@ -9,23 +9,32 @@ import { InputErrComponent, ButtonComponent } from '@shared/components';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  registerForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    username: new FormControl(''),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    dateOfBirth: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
-    ]),
-    rePassword: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
-    ]),
-  });
+  registerForm = new FormGroup(
+    {
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      username: new FormControl(''),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      dateOfBirth: new FormControl('', [Validators.required]),
+      gender: new FormControl('', [Validators.required]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
+      ]),
+      rePassword: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
+      ]),
+    },
+    { updateOn: 'change' },
+  );
 
   submitHandler() {
-    console.log(this.registerForm.value);
+    if (this.registerForm.valid) {
+      // submit the form
+      console.log(this.registerForm.value);
+    } else {
+      // all the problematic fields show error
+      this.registerForm.markAllAsTouched();
+    }
   }
 }

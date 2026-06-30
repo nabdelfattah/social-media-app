@@ -14,6 +14,11 @@
             type="text"
             id="name"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            [class]="{
+              'border-green-700': registerForm.get('name')?.valid,
+              'border-fg-danger-strong':
+                registerForm.get('name')?.invalid && registerForm.get('name')?.touched,
+            }"
             placeholder=" "
           />
           <label
@@ -40,6 +45,11 @@
             type="text"
             id="username"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            [class]="{
+              'border-green-700': registerForm.get('username')?.valid,
+              'border-fg-danger-strong':
+                registerForm.get('username')?.invalid && registerForm.get('username')?.touched,
+            }"
             placeholder=" "
           />
           <label
@@ -63,6 +73,11 @@
             type="email"
             id="email"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            [class]="{
+              'border-green-700': registerForm.get('email')?.valid,
+              'border-fg-danger-strong':
+                registerForm.get('email')?.invalid && registerForm.get('email')?.touched,
+            }"
             placeholder=" "
           />
           <label
@@ -89,6 +104,12 @@
             type="date"
             id="date"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            [class]="{
+              'border-green-700': registerForm.get('dateOfBirth')?.valid,
+              'border-fg-danger-strong':
+                registerForm.get('dateOfBirth')?.invalid &&
+                registerForm.get('dateOfBirth')?.touched,
+            }"
             placeholder=" "
           />
           <label
@@ -111,6 +132,11 @@
             formControlName="gender"
             id="gender"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            [class]="{
+              'border-green-700': registerForm.get('gender')?.valid,
+              'border-fg-danger-strong':
+                registerForm.get('gender')?.invalid && registerForm.get('gender')?.touched,
+            }"
             placeholder=" "
           >
             <option value="" selected disabled hidden>Select gender</option>
@@ -138,6 +164,11 @@
             type="password"
             id="password"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            [class]="{
+              'border-green-700': registerForm.get('password')?.valid,
+              'border-fg-danger-strong':
+                registerForm.get('password')?.invalid && registerForm.get('password')?.touched,
+            }"
             placeholder=" "
           />
           <label
@@ -166,6 +197,11 @@
             type="password"
             id="repassword"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
+            [class]="{
+              'border-green-700': registerForm.get('rePassword')?.valid,
+              'border-fg-danger-strong':
+                registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched,
+            }"
             placeholder=" "
           />
           <label
