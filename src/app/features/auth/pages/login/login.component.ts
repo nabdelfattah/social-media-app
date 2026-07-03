@@ -55,6 +55,9 @@ export class LoginComponent {
         next: (res) => {
           // display success message in a toast
           console.log(res);
+          // store token and user's data in local storage
+          localStorage.setItem('rippleToken', res.data.token);
+          localStorage.setItem('rippleUser', JSON.stringify(res.data.user));
           // navigate to home
           this.router.navigate(['/home']);
         },
