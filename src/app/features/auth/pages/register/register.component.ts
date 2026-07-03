@@ -1,6 +1,16 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { InputErrComponent, ButtonComponent } from '@shared/components';
+import { AuthService } from '@core/auth/services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +19,12 @@ import { InputErrComponent, ButtonComponent } from '@shared/components';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
+  private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
+
+  loading = signal(false);
+  registerSubscription: Subscription = new Subscription(); // to avoid err when unsubscribe
+
   registerForm = new FormGroup(
     {
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -25,13 +41,45 @@ export class RegisterComponent {
         Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
       ]),
     },
-    { updateOn: 'change' },
+    { validators: [this.confirmPassword], updateOn: 'change' },
   );
+
+  confirmPassword(group: AbstractControl) {
+    const password = group.get('password')?.value;
+    const rePassword = group.get('rePassword')?.value;
+
+    if (rePassword !== password && rePassword !== '') {
+      // put error to the contro
+      group.get('rePassword')?.setErrors({ mismatch: true });
+      // put error to the form itself
+      return { mistatch: true };
+    } else {
+      return null;
+    }
+  }
 
   submitHandler() {
     if (this.registerForm.valid) {
+      //cancel old requests
+      this.registerSubscription.unsubscribe();
       // submit the form
-      console.log(this.registerForm.value);
+      this.loading.set(true);
+      this.registerSubscription = this.authService.signup(this.registerForm.value).subscribe({
+        next: (res) => {
+          // show recieved message in toast
+          console.log(res);
+          // navigate to home
+          this.router.navigate(['/login']);
+        },
+        error: (err: HttpErrorResponse) => {
+          this.loading.set(false);
+          // show recieved message in toast
+          console.log(err.message);
+        },
+        complete: () => {
+          this.loading.set(false);
+        },
+      });
     } else {
       // all the problematic fields show error
       this.registerForm.markAllAsTouched();

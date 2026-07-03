@@ -214,13 +214,18 @@
           @if (registerForm.get('rePassword')?.hasError('required')) {
             <app-input-err message="Please confirm your password" />
           }
-          @if (registerForm.get('rePassword')?.hasError('pattern')) {
+          @if (registerForm.get('rePassword')?.hasError('mismatch')) {
             <app-input-err message="Passwords do not match." />
           }
         }
       </div>
 
-      <app-button type="submit" tag="button" [isFullWidth]="true">Create New Account</app-button>
+      <app-button type="submit" tag="button" [isFullWidth]="true"
+        >Create New Account
+        @if (loading()) {
+          <i class="fa fa-spinner fa-spin"></i>
+        }
+      </app-button>
     </form>
   </div>
 </section>
