@@ -10,11 +10,11 @@ import { InputErrComponent, ButtonComponent } from '@shared/components';
 import { AuthService } from '@core/auth/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, InputErrComponent, ButtonComponent],
+  imports: [ReactiveFormsModule, InputErrComponent, ButtonComponent, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })

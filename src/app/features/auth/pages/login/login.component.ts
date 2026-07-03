@@ -1,31 +1,49 @@
 import { AuthService } from '@core/auth/services/auth.service';
 import { Component, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { InputErrComponent, ButtonComponent } from '@/app/shared/components';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, InputErrComponent, ButtonComponent],
+  imports: [ReactiveFormsModule, InputErrComponent, ButtonComponent, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly fb = inject(FormBuilder);
 
   loginSubscription: Subscription = new Subscription(); // to avoid err when unsubscribe
   loading = signal(false);
 
-  loginForm = new FormGroup({
-    login: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
-    ]),
+  loginForm = this.fb.group({
+    login: ['', [Validators.required, Validators.minLength(3)]],
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
+      ],
+    ],
   });
+
+  // loginForm = new FormGroup({
+  //   login: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  //   password: new FormControl('', [
+  //     Validators.required,
+  //     Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/),
+  //   ]),
+  // });
 
   submitHandler() {
     if (this.loginForm.valid) {

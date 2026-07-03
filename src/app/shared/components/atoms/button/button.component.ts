@@ -24,6 +24,11 @@ export class ButtonComponent implements OnChanges {
       'bg-primary': this.variant == 'primary',
       'hover:bg-primary-dark': this.variant == 'primary',
       'text-white': this.variant == 'primary',
+      border: this.variant == 'outline',
+      'border-primary': this.variant == 'outline',
+      'hover:bg-primary': this.variant == 'outline',
+      'hover:text-white': this.variant == 'outline',
+      'text-primary': this.variant == 'outline',
       'w-full': this.isFullWidth,
     };
   }
