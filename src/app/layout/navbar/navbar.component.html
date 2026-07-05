@@ -1,0 +1,127 @@
+<nav class="bg-neutral-primary w-full z-20 top-0 start-0 border-b border-default">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
+    <!-- logo -->
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+      <img src="/logo-removebg.png" class="h-7" alt="Ripple Logo" />
+      <span class="self-center text-xl text-primary-dark font-semibold whitespace-nowrap"
+        >Ripple</span
+      >
+    </a>
+
+    <!-- user icon and its dropdown -->
+    <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <button
+        type="button"
+        class="flex text-sm bg-neutral-primary rounded-full md:me-0 focus:ring-4 focus:ring-neutral-tertiary"
+        id="user-menu-button"
+        aria-expanded="false"
+        data-dropdown-toggle="user-dropdown"
+        data-dropdown-placement="bottom"
+      >
+        <span class="sr-only">Open user menu</span>
+        <img class="w-8 h-8 rounded-full" src="/user.png" alt="user photo" />
+      </button>
+      <!-- Dropdown menu -->
+      <div
+        class="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
+        id="user-dropdown"
+      >
+        <div class="px-4 py-3 text-sm border-b border-default">
+          <span class="block text-heading font-medium">Joseph McFall</span>
+          <span class="block text-body truncate">name@flowbite.com</span>
+        </div>
+        <ul class="p-2 text-sm text-body font-medium" aria-labelledby="user-menu-button">
+          <li>
+            <a
+              routerLink="/profile"
+              routerLinkActive="bg-primary-tint/60"
+              routerLinkActive="bg-primary-tint/60"
+              class="inline-flex items-center w-full p-2 hover:bg-primary-tint/60 hover:text-heading rounded"
+              ><i class="fa-user fa-solid"></i>Profile</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/change-password"
+              routerLinkActive="bg-primary-tint/60"
+              class="inline-flex items-center w-full p-2 hover:bg-primary-tint/60 hover:text-heading rounded"
+              ><i class="fa-gear fa-solid"></i> Settings</a
+            >
+          </li>
+
+          <li>
+            <button
+              (click)="logout()"
+              class="inline-flex items-center w-full p-2 hover:bg-primary-tint/60 hover:text-heading rounded"
+            >
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out
+            </button>
+          </li>
+        </ul>
+      </div>
+      <button
+        data-collapse-toggle="navbar-user"
+        type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+        aria-controls="navbar-user"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-6 h-6"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-width="2"
+            d="M5 7h14M5 12h14M5 17h14"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- navbar list -->
+    <div
+      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+      id="navbar-user"
+    >
+      <ul
+        class="font-medium flex flex-col p-4 md:p-2 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:bg-primary-tint/50"
+      >
+        <li>
+          <a
+            routerLink="/home"
+            ariaCurrentWhenActive="page"
+            class="block py-2 px-3 rounded md:p-0 text-gray-700 hover:text-primary-dark transition duration-300"
+            routerLinkActive="text-primary-dark"
+            ><i class="fa-house fa-regular"></i>Home</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/profile"
+            ariaCurrentWhenActive="page"
+            class="block py-2 px-3 rounded md:p-0 text-gray-700 hover:text-primary-dark transition duration-300"
+            routerLinkActive="text-primary-dark"
+            ><i class="fa-user fa-regular"></i>Profile</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/notifications"
+            ariaCurrentWhenActive="page"
+            class="block py-2 px-3 rounded md:p-0 text-gray-700 hover:text-primary-dark transition duration-300"
+            routerLinkActive="text-primary-dark"
+            ><i class="fa-comment fa-regular"> </i>Notifications</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
