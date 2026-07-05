@@ -85,4 +85,12 @@ export class RegisterComponent {
       this.registerForm.markAllAsTouched();
     }
   }
+
+  showPassword(pass: HTMLInputElement) {
+    if (pass.type == 'password') {
+      pass.type = 'text';
+    } else {
+      pass.type = 'password';
+    }
+  }
 }

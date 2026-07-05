@@ -1,4 +1,4 @@
-import { environment } from '@/environments/environment';
+import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private readonly httpClient = inject(HttpClient);
-  private readonly baseUrl = environment.apiBaseUrl;
+  private readonly baseUrl = environment.baseUrl;
 
   signup(data: Object): Observable<any> {
     return this.httpClient.post(`${this.baseUrl}/users/signup`, data);

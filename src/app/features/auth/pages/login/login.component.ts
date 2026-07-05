@@ -25,6 +25,7 @@ export class LoginComponent {
 
   loginSubscription: Subscription = new Subscription(); // to avoid err when unsubscribe
   loading = signal(false);
+  showPassword = signal(false);
 
   loginForm = this.fb.group({
     login: ['', [Validators.required, Validators.minLength(3)]],

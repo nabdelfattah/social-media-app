@@ -3,12 +3,15 @@ import { HomeComponent } from './features/home/home.component';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
+import { authGuard } from './core/auth/guards/auth-guard';
+import { guestGuard } from './core/auth/guards/guest-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [authGuard],
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, title: 'Home' },
@@ -31,6 +34,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AuthLayoutComponent,
+    canActivate: [guestGuard],
     loadChildren: () => import('./features/auth/auth.routes').then((c) => c.routes),
   },
   { path: '**', component: NotFoundComponent, title: 'Not Found' },
