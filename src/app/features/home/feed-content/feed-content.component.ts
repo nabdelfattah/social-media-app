@@ -2,10 +2,11 @@ import { Post } from '@core/models/post.interface';
 import { PostService } from '@core/services/post.service';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import id from '@angular/common/locales/id';
+import { CommentComponent } from '../comment/comment.component';
 
 @Component({
   selector: 'app-feed-content',
-  imports: [],
+  imports: [CommentComponent],
   templateUrl: './feed-content.component.html',
   styleUrl: './feed-content.component.css',
 })
