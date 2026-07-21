@@ -1,4 +1,4 @@
-@for (post of this.data; track post._id) {
+@for (post of this.data(); track post._id) {
   <div class="bg-white rounded-[16px] my-3 shadow-sm border border-slate-200 p-4 font-sans">
     <!-- user details  -->
     <div class="flex items-start justify-between mb-3">
@@ -81,6 +81,7 @@
                   Edit post
                 </button>
                 <button
+                  (click)="deleteHandler(post.id)"
                   class="inline-flex text-red-700 items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
                 >
                   Delete post
@@ -132,6 +133,7 @@
         Like
       </button>
       <button
+        #commentBtn
         class="flex-1 flex cursor-pointer items-center justify-center gap-2 text-slate-600 font-semibold text-[14px] hover:bg-slate-50 py-2 rounded-lg transition-colors"
       >
         <i class="fa-regular fa-message text-lg"></i>
@@ -146,6 +148,9 @@
     </div>
 
     <hr class="border-t border-slate-200 mt-1 mb-4" />
+    @defer (on interaction(commentBtn)) {
+      <app-comment [id]="post._id" />
+    }
   </div>
 } @empty {
   <p class="my-4 w-full bg-white rounded-[16px] shadow-sm border border-slate-200 p-4 font-sans">
