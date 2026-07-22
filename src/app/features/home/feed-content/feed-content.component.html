@@ -118,7 +118,7 @@
         <span class="cursor-pointer hover:underline">{{ post.commentsCount }} comments</span>
         <button
           class="font-semibold cursor-pointer text-blue-600 hover:underline"
-          (click)="viewDetailsHandler(post._id)"
+          [routerLink]="['/post', post._id]"
         >
           View details
         </button>

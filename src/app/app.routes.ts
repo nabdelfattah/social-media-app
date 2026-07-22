@@ -21,7 +21,7 @@ export const routes: Routes = [
           import('./features/post-details/post-details.component').then(
             (c) => c.PostDetailsComponent,
           ),
-        title: 'Notifications',
+        title: 'Post Details',
       },
       {
         path: 'notifications',

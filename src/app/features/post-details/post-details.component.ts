@@ -1,6 +1,6 @@
 import { PostService } from '@core/services/post.service';
 import { Post, User } from '@/app/core/models/post.interface';
-import { Component, inject, input, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { CommentComponent } from '../home/comment/comment.component';
 
 @Component({
@@ -13,7 +13,8 @@ export class PostDetailsComponent implements OnInit {
   private readonly postService = inject(PostService);
   // user!: User;
   user!: User;
-  post!: Post;
+  // post!: Post;
+  post = signal<Post | null>(null);
   id = input<string>(''); // auto-populated from :id
 
   ngOnInit() {
@@ -27,7 +28,8 @@ export class PostDetailsComponent implements OnInit {
     this.postService.getSinglePost(this.id()).subscribe({
       next: (res) => {
         console.log(res.data.post);
-        this.post = res.data.post;
+        // this.post = res.data.post;
+        this.post.set(res.data.post);
       },
       error: (err) => {
         console.log(err);

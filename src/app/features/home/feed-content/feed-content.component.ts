@@ -1,19 +1,17 @@
-import { Router } from '@angular/router';
 import { Post } from '@core/models/post.interface';
 import { PostService } from '@core/services/post.service';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import id from '@angular/common/locales/id';
 import { CommentComponent } from '../comment/comment.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-feed-content',
-  imports: [CommentComponent],
+  imports: [CommentComponent, RouterLink],
   templateUrl: './feed-content.component.html',
   styleUrl: './feed-content.component.css',
 })
 export class FeedContentComponent implements OnInit {
   private readonly postService = inject(PostService);
-  private readonly router = inject(Router);
 
   data = signal<Post[]>([]);
   userId: string = ''; //initialize it in ngOnInit().
@@ -49,9 +47,5 @@ export class FeedContentComponent implements OnInit {
         console.log(err);
       },
     });
-  }
-
-  viewDetailsHandler(id: string) {
-    this.router.navigate([`/post/${id}`]);
   }
 }
