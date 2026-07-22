@@ -69,12 +69,21 @@
         class="w-full bg-transparent border-none text-[14px] text-slate-800 placeholder-slate-500 resize-none outline-none px-2 pt-1 pb-3 min-h-[60px]"
         placeholder="Comment as ..."
       ></textarea>
+      @if (imageUrl()) {
+        <img [src]="imageUrl()" [alt]="savedFile?.name" class="w-full h-[300px] object-cover mb-4" />
+      }
 
       <div class="flex items-center justify-between px-1">
         <div class="flex items-center gap-1">
-          <input type="file" id="file" class="hidden" [formControl]="image" />
+          <input
+            type="file"
+            [id]="'comment-file-' + id()"
+            class="hidden"
+            [formControl]="image"
+            (change)="changeImg($event)"
+          />
           <label
-            for="file"
+            [for]="'comment-file-' + id()"
             class="flex cursor-pointer items-center gap-2 text-slate-600 hover:bg-slate-50 px-2 py-1.5 rounded-lg transition-colors group"
           >
             <i

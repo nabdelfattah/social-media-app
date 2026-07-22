@@ -30,6 +30,10 @@ export class CommentComponent implements OnInit {
   user!: User;
   id = input<string>('');
   comments = signal<Comment[]>([]);
+
+  savedFile: File | undefined;
+  imageUrl = signal<string | ArrayBuffer | null | undefined>(null);
+
   private readonly commentsService = inject(CommentsService);
 
   content = new FormControl();
@@ -60,7 +64,7 @@ export class CommentComponent implements OnInit {
     // collect the data and create a form data object holding them
     const formData = new FormData();
     if (this.content.value) formData.append('content', this.content.value);
-    if (this.image.value) formData.append('image', this.image.value);
+    if (this.savedFile) formData.append('image', this.savedFile);
     // send date to the backend
     this.commentsService.createComment(this.id(), formData).subscribe({
       next: (res) => {
@@ -68,10 +72,27 @@ export class CommentComponent implements OnInit {
         this.getAllComments();
         // reset the form
         form.reset();
+        this.savedFile = undefined;
+        this.imageUrl.set(null);
       },
       error: (err) => {
         console.log(err);
       },
     });
+  }
+  changeImg(event: any) {
+    console.log('change image run...');
+    const files = (event.target as HTMLInputElement).files;
+    // files may be null
+    if (files && files.length > 0) {
+      this.savedFile = files[0];
+      console.log(this.savedFile);
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(this.savedFile);
+      fileReader.onload = (e: ProgressEvent<FileReader>) => {
+        this.imageUrl.set(e.target?.result);
+        console.log(this.imageUrl());
+      };
+    }
   }
 }
