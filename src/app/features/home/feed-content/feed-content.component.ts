@@ -1,12 +1,12 @@
 import { Post } from '@core/models/post.interface';
 import { PostService } from '@core/services/post.service';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import id from '@angular/common/locales/id';
 import { CommentComponent } from '../comment/comment.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-feed-content',
-  imports: [CommentComponent],
+  imports: [CommentComponent, RouterLink],
   templateUrl: './feed-content.component.html',
   styleUrl: './feed-content.component.css',
 })

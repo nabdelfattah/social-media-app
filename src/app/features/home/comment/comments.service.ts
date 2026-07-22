@@ -10,15 +10,11 @@ import { Observable } from 'rxjs';
 export class CommentsService {
   private readonly httpClient = inject(HttpClient);
   baseUrl = environment.baseUrl;
-  header: object = {
-    headers: {
-      authorization: `Bearer ${localStorage.getItem('rippleToken')}`,
-    },
-  };
+
   getComments(id: string): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/posts/${id}/comments?page=1&limit=10`, this.header);
+    return this.httpClient.get(`${this.baseUrl}/posts/${id}/comments?page=1&limit=10`);
   }
   createComment(id: string, data: Object): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/posts/${id}/comments`, data, this.header);
+    return this.httpClient.post(`${this.baseUrl}/posts/${id}/comments`, data);
   }
 }

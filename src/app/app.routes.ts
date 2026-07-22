@@ -16,6 +16,14 @@ export const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent, title: 'Home' },
       {
+        path: 'post/:id',
+        loadComponent: () =>
+          import('./features/post-details/post-details.component').then(
+            (c) => c.PostDetailsComponent,
+          ),
+        title: 'Post Details',
+      },
+      {
         path: 'notifications',
         loadComponent: () =>
           import('./features/notifications/notifications.component').then(

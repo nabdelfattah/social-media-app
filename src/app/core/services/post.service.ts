@@ -9,25 +9,20 @@ import { Observable } from 'rxjs';
 export class PostService {
   private readonly httpClient = inject(HttpClient);
   baseUrl = environment.baseUrl;
-  header: object = {
-    headers: {
-      authorization: `Bearer ${localStorage.getItem('rippleToken')}`,
-    },
-  };
 
   getAllPosts(): Observable<any> {
-    return this.httpClient.get(this.baseUrl + '/posts', this.header);
+    return this.httpClient.get(this.baseUrl + '/posts');
   }
 
   getSinglePost(id: string): Observable<any> {
-    return this.httpClient.get(`${this.baseUrl}/posts/${id}`, this.header);
+    return this.httpClient.get(`${this.baseUrl}/posts/${id}`);
   }
 
   createPost(data: object): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/posts`, data, this.header);
+    return this.httpClient.post(`${this.baseUrl}/posts`, data);
   }
 
   deletePost(id: string): Observable<any> {
-    return this.httpClient.delete(`${this.baseUrl}/posts/${id}`, this.header);
+    return this.httpClient.delete(`${this.baseUrl}/posts/${id}`);
   }
 }

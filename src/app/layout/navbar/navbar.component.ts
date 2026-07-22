@@ -16,6 +16,7 @@ export class NavbarComponent implements OnInit {
     initFlowbite();
   }
   logout() {
+    console.log('logout...');
     this.authService.signout();
   }
 }
