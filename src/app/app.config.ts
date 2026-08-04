@@ -16,6 +16,8 @@ import { headerInterceptor, errorInterceptor, loadingInterceptor } from './core/
 import { provideToastr } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,5 +34,10 @@ export const appConfig: ApplicationConfig = {
     ),
     provideToastr(),
     // importProvidersFrom(NgxSpinnerModule, BrowserAnimationsModule),
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({ prefix: '/assets/i18n/', suffix: '.json' }),
+      fallbackLang: 'en',
+      lang: 'en',
+    }),
   ],
 };

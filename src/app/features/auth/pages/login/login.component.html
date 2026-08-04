@@ -1,8 +1,10 @@
 <section class="flex justify-center items-center min-h-screen">
   <div class="container max-w-3xl bg-white shadow-lg p-5 rounded-lg">
     <header>
-      <h1 class="text-xl mb-2">Login to Ripple</h1>
-      <p class="text-gray-500 mb-6">Login and continue your social journey</p>
+      <h1 class="text-xl mb-2">{{ 'login.title' | translate }}</h1>
+      <p class="text-gray-500 mb-6">
+        {{ 'login.subtitle' | translate }}
+      </p>
     </header>
 
     <form class="grid gap-y-4" [formGroup]="loginForm" (ngSubmit)="submitHandler()">
@@ -24,15 +26,17 @@
           <label
             for="email"
             class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-            >Email Or Username</label
           >
+            {{ 'login.emailOrUsername' | translate }}
+          </label>
         </div>
+
         @if (loginForm.get('login')?.invalid && loginForm.get('login')?.touched) {
           @if (loginForm.get('login')?.hasError('required')) {
-            <app-input-err message="Email or Username is required." />
+            <app-input-err [message]="'login.validation.loginRequired' | translate" />
           }
           @if (loginForm.get('login')?.hasError('minlength')) {
-            <app-input-err message="Must be at least 3 characters." />
+            <app-input-err [message]="'login.validation.loginMinLength' | translate" />
           }
         }
       </div>
@@ -55,51 +59,57 @@
           <label
             for="password"
             class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-            >Password</label
           >
+            {{ 'login.password' | translate }}
+          </label>
+
           @if (showPassword()) {
             <span
               (click)="showPassword.update((prev) => !prev)"
               class="absolute top-1/2 -translate-y-1/2 right-2"
-              ><i class="fas fa-eye"></i
-            ></span>
+            >
+              <i class="fas fa-eye"></i>
+            </span>
           } @else {
             <span
               (click)="showPassword.update((prev) => !prev)"
               class="absolute top-1/2 -translate-y-1/2 right-2"
-              ><i class="fas fa-eye-slash"></i
-            ></span>
+            >
+              <i class="fas fa-eye-slash"></i>
+            </span>
           }
         </div>
+
         @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
           @if (loginForm.get('password')?.hasError('required')) {
-            <app-input-err message="Password is required." />
+            <app-input-err [message]="'login.validation.passwordRequired' | translate" />
           }
           @if (loginForm.get('password')?.hasError('pattern')) {
-            <app-input-err
-              message="Must contain at least 8 chars, 1 uppercase, 1 lowercase, 1 number, and 1 special"
-            />
+            <app-input-err [message]="'login.validation.passwordPattern' | translate" />
           }
         }
       </div>
 
-      <app-button type="submit" tag="button" [isFullWidth]="true"
-        >Log in
+      <app-button type="submit" tag="button" [isFullWidth]="true">
+        {{ 'login.loginButton' | translate }}
+
         @if (loading()) {
           <i class="fa fa-spinner fa-spin"></i>
         }
       </app-button>
 
       <div>
-        <p>Don't have an account?</p>
+        <p>{{ 'login.noAccount' | translate }}</p>
+
         <app-button
           tag="link"
           variant="outline"
           type="button"
           [isFullWidth]="true"
           routerLink="/register"
-          >Create a new account</app-button
         >
+          {{ 'login.createAccount' | translate }}
+        </app-button>
       </div>
     </form>
   </div>

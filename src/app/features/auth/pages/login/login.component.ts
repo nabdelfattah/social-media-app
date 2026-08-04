@@ -1,22 +1,15 @@
 import { AuthService } from '@core/auth/services/auth.service';
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { InputErrComponent, ButtonComponent } from '@/app/shared/components';
 import { HttpErrorResponse } from '@angular/common/http';
-
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, InputErrComponent, ButtonComponent, RouterLink],
+  imports: [ReactiveFormsModule, InputErrComponent, ButtonComponent, RouterLink, TranslatePipe],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   private readonly authService = inject(AuthService);

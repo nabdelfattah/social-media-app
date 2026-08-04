@@ -1,0 +1,22 @@
+{
+  "login": {
+    "title": "Login to Ripple",
+    "subtitle": "Login and continue your social journey",
+
+    "emailOrUsername": "Email or Username",
+    "password": "Password",
+
+    "loginButton": "Log in",
+
+    "noAccount": "Don't have an account?",
+    "createAccount": "Create a new account",
+
+    "validation": {
+      "loginRequired": "Email or Username is required.",
+      "loginMinLength": "Must be at least 3 characters.",
+
+      "passwordRequired": "Password is required.",
+      "passwordPattern": "Must contain at least 8 chars, 1 uppercase, 1 lowercase, 1 number, and 1 special character."
+    }
+  }
+}
