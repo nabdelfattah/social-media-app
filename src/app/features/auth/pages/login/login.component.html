@@ -46,7 +46,7 @@
         <div class="relative">
           <input
             formControlName="password"
-            [type]="showPassword() ? 'text' : 'password'"
+            [type]="inputType()"
             id="password"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
             [class]="{
@@ -63,21 +63,13 @@
             {{ 'login.password' | translate }}
           </label>
 
-          @if (showPassword()) {
-            <span
-              (click)="showPassword.update((prev) => !prev)"
-              class="absolute top-1/2 -translate-y-1/2 right-2"
-            >
-              <i class="fas fa-eye"></i>
-            </span>
-          } @else {
-            <span
-              (click)="showPassword.update((prev) => !prev)"
-              class="absolute top-1/2 -translate-y-1/2 right-2"
-            >
-              <i class="fas fa-eye-slash"></i>
-            </span>
-          }
+          <button
+            type="button"
+            (click)="showPassword.update((prev) => !prev)"
+            class="absolute top-1/2 -translate-y-1/2 right-2"
+          >
+            <i [class]="eyeIcon()"></i>
+          </button>
         </div>
 
         @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {

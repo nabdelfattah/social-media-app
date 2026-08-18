@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -24,6 +24,14 @@ export class RegisterComponent {
 
   loading = signal(false);
   registerSubscription: Subscription = new Subscription(); // to avoid err when unsubscribe
+
+  showPassword = signal(false);
+  inputType = computed(() => (this.showPassword() ? 'text' : 'password'));
+  eyeIcon = computed(() => (this.showPassword() ? 'fas fa-eye' : 'fas fa-eye-slash'));
+
+  showRePassword = signal(false);
+  inputTypeRe = computed(() => (this.showRePassword() ? 'text' : 'password'));
+  eyeIconRe = computed(() => (this.showRePassword() ? 'fas fa-eye' : 'fas fa-eye-slash'));
 
   registerForm = new FormGroup(
     {
@@ -83,14 +91,6 @@ export class RegisterComponent {
     } else {
       // all the problematic fields show error
       this.registerForm.markAllAsTouched();
-    }
-  }
-
-  showPassword(pass: HTMLInputElement) {
-    if (pass.type == 'password') {
-      pass.type = 'text';
-    } else {
-      pass.type = 'password';
     }
   }
 }

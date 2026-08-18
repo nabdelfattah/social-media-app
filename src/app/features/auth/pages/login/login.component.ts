@@ -1,5 +1,5 @@
 import { AuthService } from '@core/auth/services/auth.service';
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -19,6 +19,8 @@ export class LoginComponent {
   loginSubscription: Subscription = new Subscription(); // to avoid err when unsubscribe
   loading = signal(false);
   showPassword = signal(false);
+  inputType = computed(() => (this.showPassword() ? 'text' : 'password'));
+  eyeIcon = computed(() => (this.showPassword() ? 'fas fa-eye' : 'fas fa-eye-slash'));
 
   loginForm = this.fb.group({
     login: ['', [Validators.required, Validators.minLength(3)]],

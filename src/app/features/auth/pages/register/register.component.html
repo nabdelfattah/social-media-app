@@ -160,9 +160,8 @@
       <div class="grid gap-y-1">
         <div class="relative">
           <input
-            #pass
             formControlName="password"
-            type="password"
+            [type]="inputType()"
             id="password"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
             [class]="{
@@ -177,14 +176,13 @@
             class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
             >Password</label
           >
-          <span
-            (click)="showPassword(pass)"
+          <button
+            type="button"
+            (click)="showPassword.update((prev) => !prev)"
             class="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer"
-            ><i
-              [class]="pass.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"
-              class="fas fa-eye"
-            ></i
-          ></span>
+          >
+            <i [class]="eyeIcon()"></i>
+          </button>
         </div>
         @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
           @if (registerForm.get('password')?.hasError('required')) {
@@ -202,9 +200,8 @@
       <div class="grid gap-y-1">
         <div class="relative">
           <input
-            #repass
             formControlName="rePassword"
-            type="password"
+            [type]="inputTypeRe()"
             id="repassword"
             class="block px-2.5 pb-2.5 pt-4 w-full text-sm text-heading bg-transparent rounded-base border-1 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer"
             [class]="{
@@ -219,14 +216,13 @@
             class="absolute text-sm text-body duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-neutral-primary px-2 peer-focus:px-2 peer-focus:text-fg-brand peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
             >Confirm Password</label
           >
-          <span
-            (click)="showPassword(repass)"
+          <button
+            type="button"
+            (click)="showRePassword.update((prev) => !prev)"
             class="absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer"
-            ><i
-              [class]="repass.type === 'password' ? 'fa-eye-slash' : 'fa-eye'"
-              class="fas fa-eye"
-            ></i
-          ></span>
+          >
+            <i [class]="eyeIconRe()"></i>
+          </button>
         </div>
         @if (registerForm.get('rePassword')?.invalid && registerForm.get('rePassword')?.touched) {
           @if (registerForm.get('rePassword')?.hasError('required')) {

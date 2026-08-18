@@ -2,10 +2,11 @@ import { AuthService } from '@/app/core/auth/services/auth.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { initFlowbite } from 'flowbite';
+import { LangSwitcherComponent } from '@/app/shared/components/atoms/lang-switcher/lang-switcher.component';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, LangSwitcherComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
